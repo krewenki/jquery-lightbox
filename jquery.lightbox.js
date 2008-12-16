@@ -6,23 +6,6 @@
  * This package is distributed under the BSD license.
  * For full license information, see LICENSE.TXT
  *
- * Changes by:
- * @author Krzysztof Kotowicz <koto at webworkers dot pl>:
- *  - bugfix: multiple instances of Lightbox galleries allowed
- *    (using opts variable instead of $.fn.lightbox.defaults)
- *  - bugfix: use var for local variables in a few functions
- *  - added support for navbarOnTop setting
- *  - added support for displayTitle setting
- *  - added support for slideNavBar setting (with slideNavBarSpeed)
- *  - added support for displayHelp setting
- *  - added support for fitToScreen setting (ported Lightbox VinDSL hack)
- *    (see http://www.huddletogether.com/forum/comments.php?DiscussionID=307)
- *  - plugin now uses jQuery.width() and jQuery.height()
- *  - removed eval() calls
- *  - removed destroyElement - uses jQuery.remove()
- *  - use of prevLinkText, nextLinkText and help
- *  - all strings are now placed in opts.strings to allow for customization/translation
- *
  * Based on Lightbox 2 by Lokesh Dhakar (http://www.huddletogether.com/projects/lightbox2/)
  * Originally written to make use of the Prototype framework, and Script.acalo.us, now altered to use jQuery.
  *
