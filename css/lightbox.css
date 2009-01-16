@@ -122,4 +122,7 @@ padding-right: 20px;
 	height: 1%;
 	/* End hide from IE-mac */
 	}	
-	
+
+#lightboxIframe {
+	display: none;
+}	
