@@ -66,6 +66,10 @@
 		$("#bottomNavClose").click(function(){ $.fn.lightbox.end(); return false; });
 		$('#outerImageContainer').width(opts.widthCurrent).height(opts.heightCurrent);
 		$('#imageDataContainer').width(opts.widthCurrent);
+		
+		if (!opts.imageClickClose) {
+    		$("#hoverNav").click(function(){ return false; });
+		}
 	};
 
 
@@ -101,7 +105,7 @@
 	};
 
 	$.fn.lightbox.start = function(imageLink){
-		
+
 		$("select, embed, object").hide();
 		var arrayPageSize = $.fn.lightbox.getPageSize();
 		$("#overlay").hide().css({width: '100%', height: arrayPageSize[1]+'px', opacity : opts.overlayOpacity}).fadeIn();
@@ -213,14 +217,22 @@
 	};
 
 	$.fn.lightbox.preloadNeighborImages = function(){
-		if((opts.imageArray.length - 1) > opts.activeImage){
-			preloadNextImage = new Image();
-			preloadNextImage.src = opts.imageArray[opts.activeImage + 1][0];
-		}
-		if(opts.activeImage > 0){
-			preloadPrevImage = new Image();
-			preloadPrevImage.src = opts.imageArray[opts.activeImage - 1][0];
-		}
+		if(opts.loopImages && opts.imageArray.length > 1) {
+	        preloadNextImage = new Image();
+	        preloadNextImage.src = opts.imageArray[(opts.activeImage == (opts.imageArray.length - 1)) ? 0 : opts.activeImage + 1][0]
+	        
+	        preloadPrevImage = new Image();
+	        preloadPrevImage.src = opts.imageArray[(opts.activeImage == 0) ? (opts.imageArray.length - 1) : opts.activeImage - 1][0]
+	    } else {
+		    if((opts.imageArray.length - 1) > opts.activeImage){
+			    preloadNextImage = new Image();
+			    preloadNextImage.src = opts.imageArray[opts.activeImage + 1][0];
+		    }
+		    if(opts.activeImage > 0){
+			    preloadPrevImage = new Image();
+			    preloadPrevImage.src = opts.imageArray[opts.activeImage - 1][0];
+		    }
+	    }
 	};
 
 	$.fn.lightbox.keyboardAction = function(e){
@@ -273,7 +285,6 @@
 			});
 		});
 
-
 		// if new and old image are same size and no scaling transition is necessary,
 		// do a quick pause to prevent image flicker.
 		if((hDiff == 0) && (wDiff == 0)){
@@ -308,15 +319,15 @@
 			nav_html = opts.strings.image + (opts.activeImage + 1) + opts.strings.of + opts.imageArray.length;
 
 			if (!opts.disableNavbarLinks) {
-        // display previous / next text links
-        if ((opts.activeImage) > 0) {
-          nav_html = '<a title="' + opts.strings.prevLinkTitle + '" href="#" id="prevLinkText">' + opts.strings.prevLinkText + "</a>" + nav_html;
-        }
+                // display previous / next text links
+                if ((opts.activeImage) > 0 || opts.loopImages) {
+                  nav_html = '<a title="' + opts.strings.prevLinkTitle + '" href="#" id="prevLinkText">' + opts.strings.prevLinkText + "</a>" + nav_html;
+                }
 
-        if ((opts.activeImage + 1) < opts.imageArray.length) {
-          nav_html += '<a title="' + opts.strings.nextLinkTitle + '" href="#" id="nextLinkText">' + opts.strings.nextLinkText + "</a>";
-        }
-      }
+                if (((opts.activeImage + 1) < opts.imageArray.length) || opts.loopImages) {
+                  nav_html += '<a title="' + opts.strings.nextLinkTitle + '" href="#" id="nextLinkText">' + opts.strings.nextLinkText + "</a>";
+                }
+            }
 
 			$('#numberDisplay').html(nav_html).show();
 		}
@@ -335,22 +346,34 @@
 	$.fn.lightbox.updateNav = function(){
 		if(opts.imageArray.length > 1){
 			$('#hoverNav').show();
+            
+            // if loopImages is true, always show next and prev image buttons 
+            if(opts.loopImages) {
+		        $('#prevLink,#prevLinkText').show().click(function(){
+			        $.fn.lightbox.changeImage((opts.activeImage == 0) ? (opts.imageArray.length - 1) : opts.activeImage - 1); return false;
+		        });
+		        
+		        $('#nextLink,#nextLinkText').show().click(function(){
+			        $.fn.lightbox.changeImage((opts.activeImage == (opts.imageArray.length - 1)) ? 0 : opts.activeImage + 1); return false;
+		        });
+		    
+		    } else {
+			    // if not first image in set, display prev image button
+			    if(opts.activeImage != 0){
+				    $('#prevLink,#prevLinkText').show().click(function(){
+					    $.fn.lightbox.changeImage(opts.activeImage - 1); return false;
+				    });
+			    }
 
-			// if not first image in set, display prev image button
-			if(opts.activeImage != 0){
-				$('#prevLink,#prevLinkText').show().click(function(){
-					$.fn.lightbox.changeImage(opts.activeImage - 1); return false;
-				});
-			}
+			    // if not last image in set, display next image button
+			    if(opts.activeImage != (opts.imageArray.length - 1)){
+				    $('#nextLink,#nextLinkText').show().click(function(){
 
-			// if not last image in set, display next image button
-			if(opts.activeImage != (opts.imageArray.length - 1)){
-				$('#nextLink,#nextLinkText').show().click(function(){
-
-					$.fn.lightbox.changeImage(opts.activeImage +1); return false;
-				});
-			}
-
+					    $.fn.lightbox.changeImage(opts.activeImage +1); return false;
+				    });
+			    }
+            }
+            
 			$.fn.lightbox.enableKeyboardNav();
 		}
 	};
@@ -393,6 +416,8 @@
 			of: ' of '
 		},
 		fitToScreen: false,		// resize images if they are bigger than window
-    disableNavbarLinks: false
+        disableNavbarLinks: false,
+        loopImages: false,
+        imageClickClose: true
 	};
 })(jQuery);
