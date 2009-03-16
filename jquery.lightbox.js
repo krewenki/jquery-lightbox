@@ -18,10 +18,9 @@
 		// build main options
 		var opts = $.extend({}, $.fn.lightbox.defaults, options);
         
-		// initalize the lightbox
-		
 		return this.each(function(){
 			$(this).click(function(){
+    		    // initalize the lightbox
     		    initialize();
 				start(this);
 				return false;
@@ -42,8 +41,9 @@
 		    
 		    // if jsonData, build the imageArray from data provided in JSON format
             if(opts.jsonData && opts.jsonData.length > 0) {
+                var parser = opts.jsonDataParser ? opts.jsonDataParser : $.fn.lightbox.parseJsonData;                
                 opts.imageArray = [];
-                opts.imageArray = $.fn.lightbox.parseJsonData(opts.jsonData);
+                opts.imageArray = parser(opts.jsonData);
 	        }
 		    
 		    var outerImage = '<div id="outerImageContainer"><div id="imageContainer"><iframe id="lightboxIframe" /><img id="lightboxImage"><div id="hoverNav"><a href="javascript://" title="' + opts.strings.prevLinkTitle + '" id="prevLink"></a><a href="javascript://" id="nextLink" title="' + opts.strings.nextLinkTitle + '"></a></div><div id="loading"><a href="javascript://" id="loadingLink"><img src="'+opts.fileLoadingImage+'"></a></div></div></div>';
@@ -105,7 +105,7 @@
 		    var date = new Date();
 		    var curDate = null;
 		    do{curDate = new Date();}
-		    while( curDate - date < ms);
+		    while(curDate - date < ms);
 	    };
 	    
 	    function start(imageLink) {
@@ -114,8 +114,7 @@
 		    $("#overlay").hide().css({width: '100%', height: arrayPageSize[1]+'px', opacity : opts.overlayOpacity}).fadeIn();
 		    imageNum = 0;
 
-
-		    // if data is provided by jsonData parameter
+		    // if data is not provided by jsonData parameter
             if(!opts.jsonData) {
                 opts.imageArray = [];
 		        // if image is NOT part of a set..
@@ -440,7 +439,8 @@
         disableNavbarLinks: false,
         loopImages: false,
         imageClickClose: true,
-        jsonData: null
+        jsonData: null,
+        jsonDataParser: null
 	};
 	
 })(jQuery);
