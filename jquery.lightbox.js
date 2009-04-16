@@ -246,7 +246,7 @@
 		    opts.heightCurrent = $("#outerImageContainer").outerHeight();
             
 		    // get new width and height
-		    var widthNew = (imgWidth  + (opts.borderSize * 2));
+		    var widthNew = Math.max(350, imgWidth  + (opts.borderSize * 2));
 		    var heightNew = (imgHeight  + (opts.borderSize * 2));
 
 		    // scalars based on change from old to new
