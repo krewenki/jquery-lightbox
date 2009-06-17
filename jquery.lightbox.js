@@ -194,16 +194,18 @@
 				    var initialPageWidth = arrayPageSize[2] - 2 * opts.borderSize;
 				    var initialPageHeight = arrayPageSize[3] - 200;
 
-				    if (imgPreloader.height > initialPageHeight)
-				    {
-					    newWidth = parseInt((initialPageHeight/imgPreloader.height) * imgPreloader.width);
-					    newHeight = initialPageHeight;
-				    }
-				    else if (imgPreloader.width > initialPageWidth)
-				    {
-					    newHeight = parseInt((initialPageWidth/imgPreloader.width) * imgPreloader.height);
-					    newWidth = initialPageWidth;
-				    }
+					var dI = initialPageWidth/initialPageHeight;
+					var dP = imgPreloader.width/imgPreloader.height;
+
+					if((imgPreloader.height > initialPageHeight) || (imgPreloader.width > initialPageWidth)){
+					    if(dI > dP){
+					        newWidth = parseInt((initialPageHeight/imgPreloader.height) * imgPreloader.width);
+					        newHeight = initialPageHeight;
+					    } else {
+					        newHeight = parseInt((initialPageWidth/imgPreloader.width) * imgPreloader.height);
+					        newWidth = initialPageWidth;
+					    }
+					}
 			    }
 
 			    $('#lightboxImage').attr('src', opts.imageArray[opts.activeImage][0])
