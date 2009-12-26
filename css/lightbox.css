@@ -86,6 +86,7 @@ padding-right: 20px;
 #imageData #imageDetails{ width: 70%; float: left; text-align: left; }	
 #imageData #caption{ font-weight: bold;	}
 #imageData #numberDisplay{ display: block; clear: left; padding-bottom: 1.0em;	}
+#imageData #numberDisplay a { color: black; padding-left: 5px; padding-right: 5px;}
 #imageData #bottomNavClose{ width: 66px; float: right;  padding-bottom: 0.7em;	}
 #imageData #helpDisplay {clear: left; float: left; display: block; }
 

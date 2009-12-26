@@ -233,10 +233,10 @@
 		};
 	    
    function end() {
-    disableKeyboardNav();
-    $('#lightbox').hide();
-    $('#overlay').fadeOut();
-    $('select, object, embed').show();
+	   disableKeyboardNav();
+	   $('#lightbox').hide();
+	   $('#overlay').fadeOut();
+	   $('select, object, embed').show();
    };
 	    
     function preloadNeighborImages() {
@@ -313,6 +313,10 @@
 				var nav_html;
 
 				nav_html = opts.strings.image + (opts.activeImage + 1) + opts.strings.of + opts.imageArray.length;
+				
+				if (opts.displayDownloadLink) {
+					nav_html += "<a href='" + opts.imageArray[opts.activeImage][0] + "'>" + opts.strings.download + "</a>";
+				}				
 
 				if (!opts.disableNavbarLinks) {
 					// display previous / next text links
@@ -324,8 +328,8 @@
 						nav_html += '<a title="' + opts.strings.nextLinkTitle + '" href="#" id="nextLinkText">' + opts.strings.nextLinkText + "</a>";
 					}
 				}
-
-			$('#numberDisplay').html(nav_html).show();
+				
+				$('#numberDisplay').html(nav_html).show();
 			}
 
 			if (opts.slideNavBar) {
@@ -447,6 +451,7 @@
 		yScale: 1,
 		displayTitle: true,
 		navbarOnTop: false,
+		displayDownloadLink: false,
 		
 		// slide nav bar up/down between image resizing transitions
 		slideNavBar: false, 
@@ -461,7 +466,8 @@
 			nextLinkText:  'Next &raquo;',
 			closeTitle: 'close image gallery',
 			image: 'Image ',
-			of: ' of '
+			of: ' of ',
+			download: 'Download'
 		},
 		
 		// resize images if they are bigger than window
