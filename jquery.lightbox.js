@@ -184,28 +184,32 @@
 
 		    // once image is preloaded, resize image container
 		    imgPreloader.onload=function(){
-		        var newWidth = imgPreloader.width;
-		        var newHeight = imgPreloader.height;
+	        var newWidth = imgPreloader.width;
+	        var newHeight = imgPreloader.height;
 
+					if (opts.scaleImages) {
+						newWidth = parseInt(opts.xScale * newWidth);
+						newHeight = parseInt(opts.yScale * newHeight);
+					}
 
 			    if (opts.fitToScreen) {
-		            var arrayPageSize = getPageSize();
+            var arrayPageSize = getPageSize();
 				    var ratio;
 				    var initialPageWidth = arrayPageSize[2] - 2 * opts.borderSize;
 				    var initialPageHeight = arrayPageSize[3] - 200;
 
-					var dI = initialPageWidth/initialPageHeight;
-					var dP = imgPreloader.width/imgPreloader.height;
+						var dI = initialPageWidth/initialPageHeight;
+						var dP = imgPreloader.width/imgPreloader.height;
 
-					if((imgPreloader.height > initialPageHeight) || (imgPreloader.width > initialPageWidth)){
-					    if(dI > dP){
-					        newWidth = parseInt((initialPageHeight/imgPreloader.height) * imgPreloader.width);
-					        newHeight = initialPageHeight;
-					    } else {
-					        newHeight = parseInt((initialPageWidth/imgPreloader.width) * imgPreloader.height);
-					        newWidth = initialPageWidth;
-					    }
-					}
+						if((imgPreloader.height > initialPageHeight) || (imgPreloader.width > initialPageWidth)){
+						    if(dI > dP){
+						        newWidth = parseInt((initialPageHeight/imgPreloader.height) * imgPreloader.width);
+						        newHeight = initialPageHeight;
+						    } else {
+						        newHeight = parseInt((initialPageWidth/imgPreloader.width) * imgPreloader.height);
+						        newWidth = initialPageWidth;
+						    }
+						}
 			    }
 
 			    $('#lightboxImage').attr('src', opts.imageArray[opts.activeImage][0])
@@ -250,10 +254,6 @@
 		    // get new width and height
 		    var widthNew = Math.max(350, imgWidth  + (opts.borderSize * 2));
 		    var heightNew = (imgHeight  + (opts.borderSize * 2));
-
-		    // scalars based on change from old to new
-		    opts.xScale = ( widthNew / opts.widthCurrent) * 100;
-		    opts.yScale = ( heightNew / opts.heightCurrent) * 100;
 
 		    // calculate size difference between new and old image, and resize if necessary
 		    wDiff = opts.widthCurrent - widthNew;
@@ -420,6 +420,7 @@
 		resizeSpeed : 350,
 		widthCurrent: 250,
 		heightCurrent: 250,
+		scaleImages: false,
 		xScale : 1,
 		yScale : 1,
 		displayTitle: true,
