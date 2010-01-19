@@ -17,13 +17,11 @@
 		// build main options
 		var opts = $.extend({}, $.fn.lightbox.defaults, options);
         
-		return this.each(function() {
-			$(this).click(function() {
-		    // initalize the lightbox
-		    initialize();
-				start(this);
-				return false;
-			});
+		return $(this).live("click",function(){
+			// initialize the lightbox
+			initialize();
+			start(this);
+			return false;
 		});
 		
     /**
