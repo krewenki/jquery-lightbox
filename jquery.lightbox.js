@@ -119,7 +119,7 @@
       if (!opts.jsonData) {
       	opts.imageArray = [];
       	// if image is NOT part of a set..
-      	if (!imageLink.rel || (imageLink.rel == '')) {
+      	if ((!imageLink.rel || (imageLink.rel == '')) && !opts.allSet) {
        		// add single image to Lightbox.imageArray
        		opts.imageArray.push(new Array(imageLink.href, opts.displayTitle ? imageLink.title : ''));
       	} else {
@@ -433,7 +433,8 @@
 		return imageArray;
 	};
 
-	$.fn.lightbox.defaults = {
+	$.fn.lightbox.defaults = {q
+		allSet: false,
 		fileLoadingImage: 'images/loading.gif',
 		fileBottomNavCloseImage: 'images/closelabel.gif',
 		overlayOpacity: 0.8,
