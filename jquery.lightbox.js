@@ -433,7 +433,7 @@
 		return imageArray;
 	};
 
-	$.fn.lightbox.defaults = {q
+	$.fn.lightbox.defaults = {
 		allSet: false,
 		fileLoadingImage: 'images/loading.gif',
 		fileBottomNavCloseImage: 'images/closelabel.gif',
