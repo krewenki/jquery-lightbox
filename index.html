@@ -1,1 +1,100 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>	<title>krewenki/jquery-lightbox @ GitHub</title>		<style type="text/css">		body {  		margin-top: 1.0em;  		background-color: #e924e4;		  font-family: "Helvetica,Arial,FreeSans";   		color: #000000;    }    #container {      margin: 0 auto;      width: 700px;    }		h1 { font-size: 3.8em; color: #16db1b; margin-bottom: 3px; }		h1 .small { font-size: 0.4em; }		h1 a { text-decoration: none }		h2 { font-size: 1.5em; color: #16db1b; }    h3 { text-align: center; color: #16db1b; }    a { color: #16db1b; }    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}    .download { float: right; }		pre { background: #000; color: #fff; padding: 15px;}    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}    .footer { text-align:center; padding-top:30px; font-style: italic; }	</style>	</head><body>  <a href="http://github.com/krewenki/jquery-lightbox"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>    <div id="container">    <div class="download">      <a href="http://github.com/krewenki/jquery-lightbox/zipball/master">        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>      <a href="http://github.com/krewenki/jquery-lightbox/tarball/master">        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>    </div>          <h1><a href="http://github.com/krewenki/jquery-lightbox">jQuery Lightbox</a>       <span class="small">by <a href="http://github.com/krewenki">krewenki</a></span></h1>    <div class="description">      The popular lightbox script, ported to jQuery    </div>    <h2>Authors</h2><p>bdunbar (dunbarb2@gmail.com)<br/>Warren Krewenki (krewenki@gmail.com)<br/>M. Scott Ford (scott@vaderpi.com)<br/>Scott Windsor (swindsor@gmail.com)<br/><br/>      </p><h2>Contact</h2><p>Warren Krewenki (krewenki@gmail.com)<br/>      </p>    <h2>Download</h2>    <p>      You can download this project in either      <a href="http://github.com/krewenki/jquery-lightbox/zipball/master">zip</a> or      <a href="http://github.com/krewenki/jquery-lightbox/tarball/master">tar</a> formats.    </p>    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>      by running:      <pre>$ git clone git://github.com/krewenki/jquery-lightbox</pre>    </p>          <div class="footer">      get the source code on GitHub : <a href="http://github.com/krewenki/jquery-lightbox">krewenki/jquery-lightbox</a>    </div>      </div>  </body></html>
+<!doctype html>
+<html>
+<head>
+	<title>jQuery Lightbox | Test Page</title>
+
+	<link rel="stylesheet" href="css/lightbox.css" type="text/css" media="screen" />
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+	<script src="jquery.lightbox.js"></script>
+	<script>
+		$(document).ready(function(){
+		    base_url = document.location.href.substring(0, document.location.href.indexOf('index.html'), 0);
+
+			$(".lightbox").lightbox({
+			    fitToScreen: true,
+			    imageClickClose: false
+		    });
+
+			$(".lightbox-2").lightbox({
+			    fitToScreen: true,
+			    scaleImages: true,
+			    xScale: 1.2,
+			    yScale: 1.2,
+			    displayDownloadLink: true
+		    });
+
+			$(".lightbox-json").lightbox({
+			    fitToScreen: true,
+			    jsonData: new Array(
+			        {url: base_url + 'images/image-0.jpg', title: 'Image 1 loaded using JSON data' },
+			        {url: base_url + 'images/image-1.jpg', title: 'Image 2 loaded using JSON data' },
+			        {url: base_url + 'images/image-2.jpg', title: 'Image 3 loaded using JSON data' },
+			        {url: base_url + 'images/image-3.jpg', title: 'Image 4 loaded using JSON data' }
+		        ),
+		        loopImages: true,
+		        imageClickClose: false,
+		        disableNavbarLinks: true
+		    });
+
+
+		});
+
+	</script>
+
+	<style type="text/css">
+		body{ color: #333; font: 13px 'Lucida Grande', Verdana, sans-serif;	}
+	</style>
+
+</head>
+<body>
+
+
+<h1><a href="http://krewenki.github.com/jquery-lightbox">jQuery Lightbox</a></h1>
+<p>Modified work by <a href="http://krewenki.github.com/">Warren Krewenki</a></p>
+<p>Originally written by <a href="http://www.huddletogether.com">Lokesh Dhakar</a></p>
+
+<h2>Example 1: Single Image</h2>
+<a href="http://farm2.static.flickr.com/1257/1092054504_0857149719_d.jpg" class="lightbox" title="Photo by Warren Krewenki"><img src="http://farm2.static.flickr.com/1257/1092054504_0857149719_t_d.jpg" height="40" alt="" /></a>
+
+<h2>Example 2: Series</h2>
+<a href="http://farm2.static.flickr.com/1036/1092054380_6040129664_d.jpg" class="lightbox-2" rel="flowers" title="Photo by Warren Krewenki"><img src="http://farm2.static.flickr.com/1036/1092054380_6040129664_t_d.jpg" height="40" alt="" /></a>
+<a href="http://farm2.static.flickr.com/1257/1092054504_0857149719_d.jpg" class="lightbox-2" rel="flowers" title="Photo by Warren Krewenki"><img src="http://farm2.static.flickr.com/1257/1092054504_0857149719_t_d.jpg" height="40" alt="" /></a>
+<a href="http://farm4.static.flickr.com/3130/2901336771_ecb32f7462_b_d.jpg" class="lightbox-2" rel="flowers" title="Photo by Warren Krewenki"><img src="http://farm4.static.flickr.com/3130/2901336771_ecb32f7462_t_d.jpg" height="40" alt="" /></a>
+<a href="http://farm4.static.flickr.com/3487/3294395073_55c3e7583e_o_d.jpg" class="lightbox-2" rel="flowers" title="Bedford Basin by Warren Krewenki"><img src="http://farm4.static.flickr.com/3487/3294395073_1051c3daa1_t_d.jpg" height="40" alt="" /></a>
+
+<h2>Example 3: Images loaded using jsonData parameter (thumbnails are static)</h2>
+<a href="http://farm4.static.flickr.com/3130/2901336771_ecb32f7462_b_d.jpg" class="lightbox-json" title="Photo by Warren Krewenki"><img src="http://farm4.static.flickr.com/3130/2901336771_ecb32f7462_t_d.jpg" height="40" alt="" /></a>
+<a href="http://farm4.static.flickr.com/3487/3294395073_55c3e7583e_o_d.jpg" class="lightbox-json" title="Photo by Warren Krewenki"><img src="http://farm4.static.flickr.com/3487/3294395073_1051c3daa1_t_d.jpg" height="40" alt="" /></a>
+
+<h2>How to Use:</h2>
+<h3>Part 1 - Setup</h3>
+<ol>
+<li>jQuery lightbox uses the  jQuery Library. You will need to include these two Javascript files in your header.
+<pre><code>&lt;script type=&quot;text/javascript&quot; src=&quot;jquery.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;lightbox.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+</li>
+<li>Include the Lightbox CSS file (or append your active stylesheet with the Lightbox styles).
+<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;css/lightbox.css&quot; type=&quot;text/css&quot; media=&quot;screen&quot; /&gt;
+</code></pre>
+</li>
+<li>Check the CSS and make sure the referenced <code>prevlabel.gif</code> and <code>nextlabel.gif</code> files are in the right location. Also, make sure the <code>loading.gif</code> and <code>closelabel.gif</code> files as referenced near the top of the <code>lightbox.js</code> file are in the right location.</li>
+</ol>
+<h3>Part 2 - Activate</h3>
+<ol>
+<li>Add a <code>class="lightbox"</code> attribute to any link tag to activate the lightbox. For example:
+<pre><code>&lt;a href=&quot;images/image-1.jpg&quot; class=&quot;lightbox&quot; title=&quot;my caption&quot;&gt;image #1&lt;/a&gt;
+</code></pre>
+<em>Optional: </em>Use the <code>title</code> attribute if you want to show a caption.		</li>
+<li>If you have a set of related images that you would like to group, follow step one but additionally include a group name in the rel attribute. For example: 
+<pre><code>&lt;a href=&quot;images/image-1.jpg&quot; class=&quot;lightbox&quot; rel=&quot;roadtrip&quot;&gt;image #1&lt;/a&gt;
+&lt;a href=&quot;images/image-2.jpg&quot; class=&quot;lightbox&quot; rel=&quot;roadtrip&quot;&gt;image #2&lt;/a&gt;
+&lt;a href=&quot;images/image-3.jpg&quot; class=&quot;lightbox&quot; rel=&quot;roadtrip&quot;&gt;image #3&lt;/a&gt;
+</code></pre>
+No limits to the number of image sets per page or how many images are allowed in each set. Go nuts!</li>
+</ol>	
+
+
+</body>
+</html>
