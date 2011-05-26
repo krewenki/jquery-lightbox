@@ -5,4 +5,4 @@ jQuery Lightbox is a simple port of the popular lightbox script, which is based 
 
 ### Usage
 
-> $.lightbox();
+> $('a.lightbox').lightbox();
