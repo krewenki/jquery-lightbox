@@ -240,10 +240,10 @@
     function preloadNeighborImages() {
 	    if (opts.loopImages && opts.imageArray.length > 1) {
 	      preloadNextImage = new Image();
-	      preloadNextImage.src = opts.imageArray[(opts.activeImage == (opts.imageArray.length - 1)) ? 0 : opts.activeImage + 1][0]
+	      preloadNextImage.src = opts.imageArray[(opts.activeImage == (opts.imageArray.length - 1)) ? 0 : opts.activeImage + 1][0];
       
 	      preloadPrevImage = new Image();
-	      preloadPrevImage.src = opts.imageArray[(opts.activeImage == 0) ? (opts.imageArray.length - 1) : opts.activeImage - 1][0]
+	      preloadPrevImage.src = opts.imageArray[(opts.activeImage == 0) ? (opts.imageArray.length - 1) : opts.activeImage - 1][0];
 			} else {
 				if ((opts.imageArray.length - 1) > opts.activeImage) {
 					preloadNextImage = new Image();
@@ -380,7 +380,7 @@
     };
 	    
 		function keyboardAction(e) {
-			var o = e.data.opts
+			var o = e.data.opts;
 			var keycode = e.keyCode;
 			var escapeKey = 27;
 
