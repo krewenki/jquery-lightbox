@@ -4,7 +4,13 @@
 	<title>jQuery Lightbox | Test Page</title>
 
 	<link rel="stylesheet" href="css/lightbox.css" type="text/css" media="screen" />
-
+	<style>
+		#iframeContainer {
+			position: absolute;
+			right: 0px;
+			top: 0px;
+		}
+	</style>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
 	<script src="https://github.com/krewenki/jquery-lightbox/raw/master/jquery.lightbox.js"></script>
 	<script>
@@ -48,7 +54,9 @@
 
 </head>
 <body>
-
+<div id="iframeContainer">
+	<iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FJQuery-Lightbox%2F218228224868190&amp;width=292&amp;colorscheme=light&amp;show_faces=true&amp;stream=false&amp;header=true&amp;height=62" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true"></iframe>
+</div>
 
 <h1><a href="http://krewenki.github.com/jquery-lightbox">jQuery Lightbox</a></h1>
 <p>Modified work by <a href="http://krewenki.github.com/">Warren Krewenki</a></p>
@@ -96,6 +104,9 @@ Get the latest copy from <a href="http://www.github.com/krewenki/jquery-lightbox
 </code></pre>
 No limits to the number of image sets per page or how many images are allowed in each set. Go nuts!</li>
 </ol>	
+
+
+
 
 <script type="text/javascript"> 
  
