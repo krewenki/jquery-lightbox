@@ -1,6 +1,5 @@
 /**
  * jQuery Lightbox
- * Version 0.5 - 11/29/2007
  * @author Warren Krewenki
  *
  * This package is distributed under the BSD license.
