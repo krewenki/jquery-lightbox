@@ -1,4 +1,4 @@
-#stimuli_lightbox {
+#lightbox {
 	position: absolute;
 	left: 0;
 	width: 100%;
@@ -7,9 +7,9 @@
 	line-height: 0;
 }
 
-#stimuli_lightbox a img { border: none; }
+#lightbox a img { border: none; }
 
-#stimuli_outerImageContainer {
+#outerImageContainer {
 	position: relative;
 	background-color: #333;
 	width: 250px;
@@ -17,11 +17,11 @@
 	margin: 0 auto;
 }
 
-#stimuli_imageContainer {
+#imageContainer {
 	padding: 10px;
 }
 
-#stimuli_loading {
+#loading {
 	position: absolute;
 	top: 40%;
 	left: 0%;
@@ -31,7 +31,7 @@
 	line-height: 0;
 	background: transparent center url(images/loading.gif) no-repeat;
 }
-#stimuli_hoverNav {
+#hoverNav {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -39,37 +39,36 @@
 	width: 100%;
 	z-index: 10;
 }
-#stimuli_imageContainer>#stimuli_hoverNav { left: 0;}
-#stimuli_hoverNav a { outline: none;}
+#imageContainer>#hoverNav { left: 0;}
+#hoverNav a { outline: none;}
 
-#stimuli_prevLink, #stimuli_nextLink {
+#prevLink, #nextLink {
 	width: 49%;
 	height: 100%;
 	background: transparent url(images/blank.gif) no-repeat; /* Trick IE into showing hover */
 	display: block;
 }
-#stimuli_prevLink { left: 0; float: left;}
-#stimuli_nextLink { right: 0; float: right;}
-#stimuli_prevLink:hover, #stimuli_prevLink:visited:hover { background: url(images/prev.gif) left 55% no-repeat; }
-#stimuli_nextLink:hover, #stimuli_nextLink:visited:hover { background: url(images/next.gif) right 55% no-repeat; }
+#prevLink { left: 0; float: left;}
+#nextLink { right: 0; float: right;}
+#prevLink:hover, #prevLink:visited:hover { background: url(images/prev.gif) left 55% no-repeat; }
+#nextLink:hover, #nextLink:visited:hover { background: url(images/next.gif) right 55% no-repeat; }
 
 
-#stimuli_imageDataContainer {
+#imageDataContainer {
 	font: 10px Verdana, Helvetica, sans-serif;
 	background-color: #333;
 	margin: 0 auto;
 	line-height: 1.4em;
-	overflow: auto;
-	width: 100%	
 }
 
-#stimuli_imageData {	padding:0 10px; color: #FFF; }
-#stimuli_imageData #stimuli_imageDetails { width: 70%; float: left; text-align: left; }	
-#stimuli_imageData #stimuli_caption { font-weight: bold;}
-#stimuli_imageData #stimuli_numberDisplay { display: block; clear: left; padding-bottom: 1.0em;}			
-#stimuli_imageData #stimuli_bottomNavClose { width: 66px; float: right; padding-bottom: 0.7em; background: url(images/closelabel.gif) right 55% no-repeat; padding-top: 1.0em; margin-bottom: 1.0em;}	
+#imageData {	padding:0 10px; color: #FFF; }
+#imageData #imageDetails { width: 70%; float: left; text-align: left; }	
+#imageData #caption { font-weight: bold;}
+#imageData #numberDisplay { display: block; clear: left; padding-bottom: 1.0em;}
+#imageData #numberDisplay a { color: inherit; padding-left: 5px; padding-right: 5px;}			
+#imageData #bottomNavClose { width: 66px; float: right; padding-bottom: 0.7em; background: url(images/closelabel.gif) right 55% no-repeat; padding-top: 1.0em; margin-bottom: 1.0em;}	
 		
-#stimuli_overlay {
+#overlay {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -77,4 +76,27 @@
 	width: 100%;
 	height: 500px;
 	background-color: #666;
+}
+
+.clearfix:after {
+	content: "."; 
+	display: block; 
+	height: 0; 
+	clear: both; 
+	visibility: hidden;
+}
+
+* html>body .clearfix {
+	display: inline-block; 
+	width: 100%;
+}
+
+* html .clearfix {
+	/* Hides from IE-mac \*/
+	height: 1%;
+	/* End hide from IE-mac */
+}	
+
+#lightboxIframe {
+	display: none;
 }
