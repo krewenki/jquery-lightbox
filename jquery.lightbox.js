@@ -417,8 +417,9 @@
 						}
 					}
 
-					enableKeyboardNav();
+					
 				}
+				enableKeyboardNav();
 			};
 
 			function keyboardAction(e) {
@@ -432,24 +433,28 @@
 				if ((key == 'x') || (key == 'o') || (key == 'c') || (keycode == escapeKey)) { 
 					end();
 
-					// display previous image	
-				} else if ((key == 'p') || (keycode == 37)) {  
-					if(o.loopImages) {
-						disableKeyboardNav();
-						changeImage((o.activeImage == 0) ? (o.imageArray.length - 1) : o.activeImage - 1);
-					} else if (o.activeImage != 0) {
-						disableKeyboardNav();
-						changeImage(o.activeImage - 1);
-					}
-
-					// display next image
-				} else if ((key == 'n') || (keycode == 39)) { 
-					if (opts.loopImages) {
-						disableKeyboardNav();
-						changeImage((o.activeImage == (o.imageArray.length - 1)) ? 0 : o.activeImage + 1);
-					} else if (o.activeImage != (o.imageArray.length - 1)) {
-						disableKeyboardNav();
-						changeImage(o.activeImage + 1);
+						
+				} 
+				// display previous image only if there is more than 1 image.
+				if(o.imageArray.length > 1){
+					if ((key == 'p') || (keycode == 37)) {  
+						if(o.loopImages) {
+							disableKeyboardNav();
+							changeImage((o.activeImage == 0) ? (o.imageArray.length - 1) : o.activeImage - 1);
+						} else if (o.activeImage != 0) {
+							disableKeyboardNav();
+							changeImage(o.activeImage - 1);
+						}
+	
+						// display next image
+					} else if ((key == 'n') || (keycode == 39)) { 
+						if (opts.loopImages) {
+							disableKeyboardNav();
+							changeImage((o.activeImage == (o.imageArray.length - 1)) ? 0 : o.activeImage + 1);
+						} else if (o.activeImage != (o.imageArray.length - 1)) {
+							disableKeyboardNav();
+							changeImage(o.activeImage + 1);
+						}
 					}
 				}
 			};
