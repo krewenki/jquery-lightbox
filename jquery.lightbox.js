@@ -464,7 +464,7 @@
 			};
 
 			function disableKeyboardNav() {
-				$(document).unbind('keydown');
+				$(document).unbind('keydown', keyboardAction);
 			};	    
 		};
 
