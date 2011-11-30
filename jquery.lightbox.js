@@ -16,14 +16,13 @@
 		var opts = $.extend({}, $.fn.lightbox.defaults, options);
         
 		$(window).resize(resizeOverlayToFitWindow);
-
-		return $(this).live("click",function(){
+        
+		return $(this).live(opts.triggerEvent,function(){
 			// initialize the lightbox
 			initialize();
 			showLightbox(this);
 			return false;
 		});
-		
 		/*
 		# Initialize the lightbox by creating our html and reading some image data
 		# This method is called by the constructor after any click events trigger it
@@ -105,30 +104,6 @@
 			var arrayPageScroll = new Array(xScroll,yScroll);
 			return arrayPageScroll;
 		};
-
-		/*
-		# Pause execution for a length of time
-		#
-		# ms - Number of milliseconds to pause execution
-		#
-		# Examples
-		#
-		#	pause(500)
-		#	# => true
-		# This runs an ugly loop until the execution time has passed
-		# It is a horrible, horrible method and I wish to dispense with it, maybe via timeouts or something.
-		# Really, this thing is nasty.  I think it had a really bad childhood or something.  I mean, it is
-		# incredibly cruel to your browser, and to my self esteem. I didn't want to write it. I didn't want to include
-		# it in my library, what with it's sexy overlay and whatnot, but here it is 4 years later and this thing lives on.
-		# Please don't upset it, i've been told it will eat your dreams.
-		*/
-		function pause(ms) {
-			var date = new Date();
-			var curDate = null;
-			do{curDate = new Date();}
-			while(curDate - date < ms);
-		};
-	    
 
 		/*
 		# Deploy the sexy overlay and display the lightbox
@@ -308,19 +283,25 @@
 						showImage();
 					});
 				});
+				
+				afterTimeout = function () {
+    				$('#prevLink').height(imgHeight);
+    				$('#nextLink').height(imgHeight);
+				};
 
 				// if new and old image are same size and no scaling transition is necessary,
 				// do a quick pause to prevent image flicker.
 				if((hDiff == 0) && (wDiff == 0)) {
 					if (jQuery.browser.msie) { 
-						pause(250); 
+						setTimeout(afterTimeout, 250); 
 					} else { 
-						pause(100);
+						setTimeout(afterTimeout, 100);
 					}
+				} else {
+				    // otherwise just trigger the height and width change
+				    afterTimeout();
 				}
 
-				$('#prevLink').height(imgHeight);
-				$('#nextLink').height(imgHeight);
 			};
 
 			function showImage() {
@@ -474,6 +455,7 @@
 		};
 
 		$.fn.lightbox.defaults = {
+		    triggerEvent: "click",
 			allSet: false,
 			fileLoadingImage: 'images/loading.gif',
 			fileBottomNavCloseImage: 'images/closelabel.gif',
