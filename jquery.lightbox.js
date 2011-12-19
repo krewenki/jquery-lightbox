@@ -93,7 +93,7 @@
 			if (self.pageYOffset) {
 				yScroll = self.pageYOffset;
 				xScroll = self.pageXOffset;
-			} else if (document.documentElement && document.documentElement.scrollTop){  // Explorer 6 Strict
+			} else if (document.documentElement && (document.documentElement.scrollTop || document.documentElement.scrollLeft)){  // Explorer 6 Strict, Firefox
 				yScroll = document.documentElement.scrollTop;
 				xScroll = document.documentElement.scrollLeft;
 			} else if (document.body) {// all other Explorers
