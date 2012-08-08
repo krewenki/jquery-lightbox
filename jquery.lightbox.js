@@ -195,7 +195,7 @@
 		};
 
 		function doChangeImage() {
-			imgPreloader = new Image();
+			var imgPreloader = new Image();
 
 			// once image is preloaded, resize image container
 			imgPreloader.onload = function() {
@@ -246,6 +246,7 @@
 			};
 
 			function preloadNeighborImages() {
+				var preloadPrevImage, preloadNextImage;
 				if (opts.loopImages && opts.imageArray.length > 1) {
 					preloadNextImage = new Image();
 					preloadNextImage.src = opts.imageArray[(opts.activeImage == (opts.imageArray.length - 1)) ? 0 : opts.activeImage + 1][0];
