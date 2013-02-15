@@ -17,7 +17,7 @@
         
 		$(window).resize(resizeOverlayToFitWindow);
         
-		return $(this).live(opts.triggerEvent,function(){
+		return $(this).on(opts.triggerEvent,function(){
 			// initialize the lightbox
 			initialize();
 			showLightbox(this);
