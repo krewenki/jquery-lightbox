@@ -59,6 +59,10 @@
 				$("body").append(string);
 			}
 
+			if (opts.imageScroll === true) {
+        $('#lightbox').css('position', 'fixed')
+      }
+
 			$("#overlay, #lightbox").click(function(){ end(); }).hide();
 			$("#loadingLink, #bottomNavClose").click(function(){ end(); return false;});
 			$('#outerImageContainer').width(opts.widthCurrent).height(opts.heightCurrent);
@@ -456,7 +460,7 @@
 		};
 
 		$.fn.lightbox.defaults = {
-		    triggerEvent: "click",
+		  triggerEvent: "click",
 			allSet: false,
 			fileLoadingImage: 'images/loading.gif',
 			fileBottomNavCloseImage: 'images/closelabel.gif',
@@ -464,6 +468,7 @@
 			borderSize: 10,
 			imageArray: new Array,
 			activeImage: null,
+			imageScroll: false,
 			inprogress: false,
 			resizeSpeed: 350,
 			widthCurrent: 250,
