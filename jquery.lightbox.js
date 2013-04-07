@@ -399,8 +399,9 @@
 						}
 					}
 
-					enableKeyboardNav();
 				}
+				enableKeyboardNav();
+
 			};
 
 			function keyboardAction(e) {
