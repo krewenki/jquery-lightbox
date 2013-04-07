@@ -17,7 +17,7 @@
         
 		$(window).resize(resizeOverlayToFitWindow);
         
-		return $(this).live(opts.triggerEvent,function(){
+		return $(this).on(opts.triggerEvent,function(){
 			// initialize the lightbox
 			initialize();
 			showLightbox(this);
@@ -293,11 +293,7 @@
 				// if new and old image are same size and no scaling transition is necessary,
 				// do a quick pause to prevent image flicker.
 				if((hDiff == 0) && (wDiff == 0)) {
-					if (jQuery.browser.msie) { 
-						setTimeout(afterTimeout, 250); 
-					} else { 
-						setTimeout(afterTimeout, 100);
-					}
+					setTimeout(afterTimeout, 100);
 				} else {
 				    // otherwise just trigger the height and width change
 				    afterTimeout();
