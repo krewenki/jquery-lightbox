@@ -138,13 +138,13 @@
 			if (!opts.jsonData) {
 				opts.imageArray = [];
 				// if image is NOT part of a set..
-				if ((!imageObject.rel || (imageObject.rel == '')) && !opts.allSet) {
+                if ((!getImageSetOf(imageObject) || (getImageSetOf(imageObject) == '')) && !opts.allSet) {
 					// add single image to Lightbox.imageArray
 					opts.imageArray.push(new Array(imageObject.href, opts.displayTitle ? imageObject.title : ''));
 				} else {
 					// if image is part of a set..
 					$("a").each(function() {
-						if(this.href && (this.rel == imageObject.rel)) {
+                        if(this.href && (getImageSetOf(this) == getImageSetOf(imageObject))) {
 							opts.imageArray.push(new Array(this.href, opts.displayTitle ? this.title : ''));
 						}
 					});
@@ -443,7 +443,15 @@
 
 			function disableKeyboardNav() {
 				$(document).unbind('keydown');
-			};	    
+			};
+
+            function getImageSetOf(imageObject) {
+                var set_name = imageObject.rel;
+                if (!set_name || set_name == '') {
+                    set_name = $(imageObject).attr('data-lightbox-set');
+                }
+                return set_name;
+            };
 		};
 
 		$.fn.lightbox.parseJsonData = function(data) {
