@@ -1,3 +1,10 @@
+.jquery-lightbox-animate {
+	transition: width 1s, height 1s;
+	transition-timing-function: ease-in-out;
+	-webkit-transition: width 1s, height 1s; /* Safari */
+  	-webkit-transition-timing-function: ease-in-out;
+}
+
 #lightbox{
 	position: absolute;
 	left: 0;
