@@ -51,17 +51,17 @@
 			var string;
 
 			if (opts.navbarOnTop) {
-				string = '<div id="overlay"></div><div id="lightbox">' + imageData + outerImage + '</div>';
+				string = '<div id="jqlb-overlay"></div><div id="lightbox">' + imageData + outerImage + '</div>';
 				$("body").append(string);
 				$("#imageDataContainer").addClass('ontop');
 			} else {
-				string = '<div id="overlay"></div><div id="lightbox">' + outerImage + imageData + '</div>';
+				string = '<div id="jqlb-overlay"></div><div id="lightbox">' + outerImage + imageData + '</div>';
 				$("body").append(string);
 			}
 
 			if (opts.imageScroll === true) {
-        $('#lightbox').css('position', 'fixed')
-      }
+  			  $('#lightbox').css('position', 'fixed')
+		  	}
 
 			$("#jqlb-overlay, #lightbox").click(function(){ end(); }).hide();
 			$("#loadingLink, #bottomNavClose").click(function(){ end(); return false;});
@@ -77,7 +77,7 @@
 		};
 
 		/*
-		# Get the document and window width/heigh
+		# Get the document and window width/height
 		#
 		# Examples
 		#
@@ -207,8 +207,8 @@
 				var newHeight = imgPreloader.height;
 
 				if (opts.scaleImages) {
-					newWidth = parseInt(opts.xScale * newWidth);
-					newHeight = parseInt(opts.yScale * newHeight);
+					newWidth = (opts.xScale * newWidth)|0;
+					newHeight = (opts.yScale * newHeight)|0;
 				}
 
 				if (opts.fitToScreen) {
@@ -222,10 +222,10 @@
 
 					if ((imgPreloader.height > initialPageHeight) || (imgPreloader.width > initialPageWidth)) {
 						if (dI > dP) {
-							newWidth = parseInt((initialPageHeight/imgPreloader.height) * imgPreloader.width);
+							newWidth = ((initialPageHeight/imgPreloader.height) * imgPreloader.width)|0;
 							newHeight = initialPageHeight;
 						} else {
-							newHeight = parseInt((initialPageWidth/imgPreloader.width) * imgPreloader.height);
+							newHeight = ((initialPageWidth/imgPreloader.width) * imgPreloader.height)|0;
 							newWidth = initialPageWidth;
 						}
 					}

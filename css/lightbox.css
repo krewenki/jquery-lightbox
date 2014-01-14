@@ -1,7 +1,7 @@
 .jquery-lightbox-animate {
-	transition: width 1s, height 1s;
+	transition: width 0.2s, height 0.2s;
 	transition-timing-function: ease-in-out;
-	-webkit-transition: width 1s, height 1s; /* Safari */
+	-webkit-transition: width 0.2s, height 0.2s; /* Safari */
   	-webkit-transition-timing-function: ease-in-out;
 }
 
@@ -97,7 +97,7 @@ padding-right: 20px;
 #imageData #bottomNavClose{ width: 66px; float: right;  padding-bottom: 0.7em;	}
 #imageData #helpDisplay {clear: left; float: left; display: block; }
 
-#overlay{
+#jqlb-overlay{
 	position: absolute;
 	top: 0;
 	left: 0;
