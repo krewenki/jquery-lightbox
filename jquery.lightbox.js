@@ -17,7 +17,7 @@
         
 		$(window).resize(resizeOverlayToFitWindow);
         
-		return $(this).on(opts.triggerEvent,function(){
+		return $(this).on(opts.triggerEvent, opts.selector, function(){
 			// initialize the lightbox
 			initialize();
 			showLightbox(this);
@@ -503,6 +503,7 @@
 			loopImages: false,
 			imageClickClose: true,
 			jsonData: null,
-			jsonDataParser: null
+			jsonDataParser: null,
+			selector: ''
 		};	
 })(jQuery);
