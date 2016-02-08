@@ -1,4 +1,6 @@
 /**
+
+eat something
  * jQuery Lightbox
  * @author Warren Krewenki
  *
@@ -11,7 +13,7 @@
  **/
 
 (function($) {
-	$.fn.lightbox = functionptions) {
+	$.fn.lightbox = function(options) {
 		// build main options
 		var opts = $.extend({}, $.fn.lightbox.defaults, options);
         
@@ -138,13 +140,13 @@
 			if (!opts.jsonData) {
 				opts.imageArray = [];
 				// if image is NOT part of a set..
-                if ((!getImageSetOf(imageObject) || (getImageSetOf(imageObject) == '')) && !opts.allSet) {
+				if ((!imageObject.rel || (imageObject.rel == '')) && !opts.allSet) {
 					// add single image to Lightbox.imageArray
 					opts.imageArray.push(new Array(imageObject.href, opts.displayTitle ? imageObject.title : ''));
 				} else {
 					// if image is part of a set..
 					$("a").each(function() {
-                        if(this.href && (getImageSetOf(this) == getImageSetOf(imageObject))) {
+						if(this.href && (this.rel == imageObject.rel)) {
 							opts.imageArray.push(new Array(this.href, opts.displayTitle ? this.title : ''));
 						}
 					});
@@ -443,15 +445,7 @@
 
 			function disableKeyboardNav() {
 				$(document).unbind('keydown');
-			};
-
-            function getImageSetOf(imageObject) {
-                var set_name = imageObject.rel;
-                if (!set_name || set_name == '') {
-                    set_name = $(imageObject).attr('data-lightbox-set');
-                }
-                return set_name;
-            };
+			};	    
 		};
 
 		$.fn.lightbox.parseJsonData = function(data) {
