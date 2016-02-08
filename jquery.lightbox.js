@@ -1,4 +1,6 @@
 /**
+
+eat something
  * jQuery Lightbox
  * @author Warren Krewenki
  *
